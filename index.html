@@ -1,67 +1,916 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LeadNest – AI‑native CRM for real estate</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #fafbfc;
-            color: #1e293b;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-            line-height: 1.5;
-        }
-        .container {
-            max-width: 640px;
-            padding: 2rem 1.5rem;
-        }
-        h1 {
-            font-size: 4rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            margin: 0 0 0.5rem 0;
-            color: #0f172a;
-        }
-        .tagline {
-            font-size: 1.5rem;
-            font-weight: 400;
-            color: #334155;
-            margin: 0 0 1.5rem 0;
-        }
-        p {
-            font-size: 1.125rem;
-            color: #475569;
-            margin: 0 0 2.5rem 0;
-        }
-        .footer {
-            font-size: 0.95rem;
-            color: #64748b;
-        }
-        .footer a {
-            color: #2563eb;
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.2s;
-        }
-        .footer a:hover {
-            border-bottom-color: #2563eb;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leadswrap — AI-Powered Real Estate Lead Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0c0f14;
+      --bg2:      #121720;
+      --bg3:      #181e2a;
+      --border:   rgba(255,255,255,0.07);
+      --gold:     #c9a84c;
+      --gold-lt:  #e8c87a;
+      --cream:    #f0e8d6;
+      --muted:    #7a8090;
+      --text:     #e8e2d5;
+      --accent:   #3d8bff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Syne', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── GRID TEXTURE ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(12,15,20,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+    }
+
+    .logo-mark {
+      width: 34px; height: 34px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #0c0f14;
+    }
+
+    .logo-text {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--cream);
+    }
+
+    .logo-text span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--cream); }
+
+    .nav-cta {
+      background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+      color: #0c0f14 !important;
+      padding: 0.5rem 1.4rem;
+      border-radius: 6px;
+      font-weight: 700 !important;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(201,168,76,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 100px;
+      padding: 0.35rem 1rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      margin-bottom: 2rem;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .badge-dot {
+      width: 6px; height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 700;
+      line-height: 1.05;
+      color: var(--cream);
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.7s 0.1s ease both;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--gold-lt);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto 2.5rem;
+      font-weight: 400;
+      line-height: 1.7;
+      animation: fadeUp 0.7s 0.2s ease both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeUp 0.7s 0.3s ease both;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+      color: #0c0f14;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      padding: 0.85rem 2rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(201,168,76,0.3);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      font-family: 'Syne', sans-serif;
+      font-weight: 500;
+      font-size: 0.9rem;
+      padding: 0.85rem 2rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(255,255,255,0.2);
+      color: var(--cream);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      justify-content: center;
+      margin-top: 4rem;
+      flex-wrap: wrap;
+      animation: fadeUp 0.7s 0.4s ease both;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--gold-lt);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 0.3rem;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SECTION COMMON ── */
+    section {
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    /* ── FEATURES ── */
+    .features {
+      padding: 7rem 4rem;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .features-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .features-header .section-sub {
+      margin: 0 auto;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: var(--bg2);
+      padding: 2.2rem;
+      transition: background 0.2s;
+    }
+
+    .feature-card:hover { background: var(--bg3); }
+
+    .feature-icon {
+      width: 44px; height: 44px;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .feature-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.02em;
+    }
+
+    .feature-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── LPMAMA ── */
+    .lpmama {
+      padding: 7rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .lpmama-dims {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .dim {
+      display: grid;
+      grid-template-columns: 2.5rem 1fr;
+      gap: 1rem;
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+      transition: all 0.2s;
+      cursor: default;
+    }
+
+    .dim:first-child { border-top: 1px solid var(--border); }
+
+    .dim:hover .dim-letter {
+      color: var(--gold);
+      background: rgba(201,168,76,0.15);
+    }
+
+    .dim-letter {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--muted);
+      background: rgba(255,255,255,0.04);
+      border-radius: 6px;
+      width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .dim-name {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 0.2rem;
+    }
+
+    .dim-desc {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ── PIPELINE ── */
+    .pipeline {
+      padding: 7rem 4rem;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .pipeline-header {
+      margin-bottom: 4rem;
+    }
+
+    .stages {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      position: relative;
+    }
+
+    .stage {
+      flex: 1;
+      min-width: 100px;
+      max-width: 130px;
+      text-align: center;
+      padding: 1.5rem 0.5rem;
+      position: relative;
+    }
+
+    .stage::after {
+      content: '→';
+      position: absolute;
+      right: -0.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .stage:last-child::after { display: none; }
+
+    .stage-dot {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      margin: 0 auto 0.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    .stage-name {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .s-new    .stage-dot { background: rgba(120,120,140,0.2); border: 1px solid rgba(120,120,140,0.4); color: #aaa; }
+    .s-cont   .stage-dot { background: rgba(61,139,255,0.15); border: 1px solid rgba(61,139,255,0.4); color: #3d8bff; }
+    .s-eng    .stage-dot { background: rgba(100,200,120,0.15); border: 1px solid rgba(100,200,120,0.4); color: #64c878; }
+    .s-qual   .stage-dot { background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.4); color: var(--gold); }
+    .s-show   .stage-dot { background: rgba(230,140,60,0.15); border: 1px solid rgba(230,140,60,0.4); color: #e68c3c; }
+    .s-neg    .stage-dot { background: rgba(200,80,80,0.15); border: 1px solid rgba(200,80,80,0.4); color: #c85050; }
+    .s-conv   .stage-dot { background: rgba(100,220,150,0.2); border: 1px solid rgba(100,220,150,0.5); color: #64dc96; }
+
+    .hotness-row {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .hotness-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .h-hot  { background: rgba(220,60,60,0.1); border: 1px solid rgba(220,60,60,0.3); color: #e06060; }
+    .h-warm { background: rgba(230,140,50,0.1); border: 1px solid rgba(230,140,50,0.3); color: #e08c50; }
+    .h-cool { background: rgba(61,139,255,0.1); border: 1px solid rgba(61,139,255,0.3); color: #6aaeff; }
+    .h-cold { background: rgba(100,120,150,0.1); border: 1px solid rgba(100,120,150,0.3); color: #8090a8; }
+
+    .hotness-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .h-hot  .hotness-dot { background: #e06060; }
+    .h-warm .hotness-dot { background: #e08c50; }
+    .h-cool .hotness-dot { background: #6aaeff; }
+    .h-cold .hotness-dot { background: #8090a8; }
+
+    /* ── HOW IT WORKS ── */
+    .how {
+      padding: 7rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .how-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      counter-reset: steps;
+    }
+
+    .step {
+      counter-increment: steps;
+      position: relative;
+      padding: 2rem;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .step:hover {
+      border-color: rgba(201,168,76,0.25);
+      transform: translateY(-4px);
+    }
+
+    .step::before {
+      content: counter(steps, decimal-leading-zero);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: rgba(201,168,76,0.12);
+      line-height: 1;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .step-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 0.5rem;
+    }
+
+    .step-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── CTA ── */
+    .cta {
+      padding: 7rem 4rem;
+      text-align: center;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 100%, rgba(201,168,76,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .cta-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+    }
+
+    .cta-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 440px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2.5rem 4rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-brand {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .footer-brand strong { color: var(--gold); }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      font-size: 0.8rem;
+      color: var(--muted);
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--cream); }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin: 1rem 0 1.5rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .features, .pipeline, .cta { padding: 5rem 1.5rem; }
+      .lpmama { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.5rem; }
+      .how { padding: 5rem 1.5rem; }
+      footer { padding: 2rem 1.5rem; }
+    }
+
+    @media (max-width: 600px) {
+      .stage::after { display: none; }
+      .stages { gap: 1rem; }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>LeadNest</h1>
-        <div class="tagline">AI‑native CRM for real estate</div>
-        <p>We’re building the intelligent workspace for modern agents.<br>Something great is on the way.</p>
-        <div class="footer">
-            <a href="privacy_policy.html">Privacy Policy</a>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="logo">
+      <div class="logo-mark">LN</div>
+      <span class="logo-text">Lead<span>Nest</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#scoring">Scoring</a></li>
+      <li><a href="#pipeline">Pipeline</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="privacy_policy.html">Privacy</a></li>
+      <li><a href="#contact" class="nav-cta">Get Access</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-glow"></div>
+    <div>
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Powered by Husig AI
+      </div>
+      <h1>Close more deals with<br /><em>intelligent leads</em></h1>
+      <p class="hero-sub">
+        Leadswrap is the AI-powered lead management platform built for real estate professionals — automatically scoring, tracking, and prioritising every lead from first contact to conversion.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Request Early Access</a>
+        <a href="#features" class="btn-ghost">See how it works</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">LPMAMA</div>
+          <div class="stat-label">Scoring Framework</div>
         </div>
+        <div class="stat">
+          <div class="stat-num">7</div>
+          <div class="stat-label">Pipeline Stages</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">Real-time</div>
+          <div class="stat-label">Lead Intelligence</div>
+        </div>
+      </div>
     </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="features-header">
+      <div class="section-label">Platform Features</div>
+      <h2 class="section-title">Everything an agent needs,<br />nothing they don't</h2>
+      <p class="section-sub">A focused, powerful toolkit designed around how real estate professionals actually work.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🏠</div>
+        <div class="feature-title">AI Lead Scoring</div>
+        <div class="feature-desc">Every lead is automatically scored across six LPMAMA dimensions, giving agents an instant "hotness" rating — hot, warm, cool, or cold.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🗂️</div>
+        <div class="feature-title">CRM Pipeline</div>
+        <div class="feature-desc">Manage leads through a structured workflow from New to Converted, with full audit trails and status history.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔗</div>
+        <div class="feature-title">Property Matching</div>
+        <div class="feature-desc">Automatically match leads to listings based on their preferences, budget, location flexibility, and bedroom requirements.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💬</div>
+        <div class="feature-title">Integrated Messaging</div>
+        <div class="feature-desc">Communicate with leads directly through the platform. All messages are logged and linked to the lead record.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <div class="feature-title">Analytics & Insights</div>
+        <div class="feature-desc">Track conversion rates, lead sources, pipeline velocity, and agent performance — all in one dashboard.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔔</div>
+        <div class="feature-title">Smart Reminders</div>
+        <div class="feature-desc">Never miss a follow-up. Set reminders and receive push notifications so no lead falls through the cracks.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LPMAMA SCORING -->
+  <section id="scoring">
+    <div class="lpmama">
+      <div>
+        <div class="section-label">AI Scoring Engine</div>
+        <h2 class="section-title">Built on the proven<br />LPMAMA framework</h2>
+        <div class="divider"></div>
+        <p class="section-sub">Every lead is evaluated across six critical dimensions. The result is a live hotness score that tells agents exactly where to focus their energy.</p>
+        <br />
+        <p style="font-size: 0.85rem; color: var(--muted); line-height: 1.7;">Scores update automatically as lead data is enriched, so your pipeline is always reflecting current reality — not stale guesswork.</p>
+      </div>
+      <div class="lpmama-dims">
+        <div class="dim">
+          <div class="dim-letter">L</div>
+          <div>
+            <div class="dim-name">Location</div>
+            <div class="dim-desc">Preferred area, property type, bedroom requirements, and location flexibility all contribute to score.</div>
+          </div>
+        </div>
+        <div class="dim">
+          <div class="dim-letter">P</div>
+          <div>
+            <div class="dim-name">Price</div>
+            <div class="dim-desc">Budget range, certainty level, and affordability signals tell us how close a lead is to transacting.</div>
+          </div>
+        </div>
+        <div class="dim">
+          <div class="dim-letter">M</div>
+          <div>
+            <div class="dim-name">Motivation</div>
+            <div class="dim-desc">Is this a first home buyer, investor, or just browsing? Urgency and motivation type shape the score significantly.</div>
+          </div>
+        </div>
+        <div class="dim">
+          <div class="dim-letter">A</div>
+          <div>
+            <div class="dim-name">Agent</div>
+            <div class="dim-desc">Whether the lead is already working with another agent affects their exclusivity and convertibility.</div>
+          </div>
+        </div>
+        <div class="dim">
+          <div class="dim-letter">M</div>
+          <div>
+            <div class="dim-name">Mortgage</div>
+            <div class="dim-desc">Cash buyer, pre-approved, or not started — financing status is one of the strongest conversion indicators.</div>
+          </div>
+        </div>
+        <div class="dim">
+          <div class="dim-letter">A</div>
+          <div>
+            <div class="dim-name">Appointment</div>
+            <div class="dim-desc">Has an appointment been requested or scheduled? Commitment signals translate directly into score.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PIPELINE -->
+  <section class="pipeline" id="pipeline">
+    <div class="pipeline-header">
+      <div class="section-label">Lead Pipeline</div>
+      <h2 class="section-title">A clear path from inquiry to close</h2>
+      <p class="section-sub" style="margin: 0 auto;">Every lead moves through a structured workflow. Nothing gets lost, nothing goes stale.</p>
+    </div>
+    <div class="stages">
+      <div class="stage s-new"><div class="stage-dot">N</div><div class="stage-name">New</div></div>
+      <div class="stage s-cont"><div class="stage-dot">C</div><div class="stage-name">Contacted</div></div>
+      <div class="stage s-eng"><div class="stage-dot">E</div><div class="stage-name">Engaged</div></div>
+      <div class="stage s-qual"><div class="stage-dot">Q</div><div class="stage-name">Qualified</div></div>
+      <div class="stage s-show"><div class="stage-dot">S</div><div class="stage-name">Showing</div></div>
+      <div class="stage s-neg"><div class="stage-dot">N</div><div class="stage-name">Negotiating</div></div>
+      <div class="stage s-conv"><div class="stage-dot">✓</div><div class="stage-name">Converted</div></div>
+    </div>
+    <div class="hotness-row">
+      <div class="hotness-pill h-hot"><span class="hotness-dot"></span> Hot — 75+ score</div>
+      <div class="hotness-pill h-warm"><span class="hotness-dot"></span> Warm — 50–74</div>
+      <div class="hotness-pill h-cool"><span class="hotness-dot"></span> Cool — 25–49</div>
+      <div class="hotness-pill h-cold"><span class="hotness-dot"></span> Cold — 0–24</div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <div class="how">
+      <div class="how-header">
+        <div class="section-label">Getting Started</div>
+        <h2 class="section-title">Up and running in minutes</h2>
+        <p class="section-sub" style="margin: 0 auto;">Leadswrap is designed for agents, not developers. No complex setup required.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-title">Create Your Account</div>
+          <div class="step-desc">Sign up as an agent and configure your preferences, target areas, and property types.</div>
+        </div>
+        <div class="step">
+          <div class="step-title">Capture Leads</div>
+          <div class="step-desc">Add leads manually or connect your existing channels. Leadswrap captures all the LPMAMA data points automatically.</div>
+        </div>
+        <div class="step">
+          <div class="step-title">AI Scores Instantly</div>
+          <div class="step-desc">The scoring engine evaluates each lead in real time. You see a hotness score and breakdown immediately.</div>
+        </div>
+        <div class="step">
+          <div class="step-title">Work Your Pipeline</div>
+          <div class="step-desc">Focus on hot leads, set reminders for follow-ups, send messages, match properties, and track progress to conversion.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta" id="contact">
+    <div class="section-label">Early Access</div>
+    <h2 class="cta-title">Ready to work smarter?</h2>
+    <p class="cta-sub">Leadswrap is currently in early access. Join real estate professionals already using AI to close more deals.</p>
+    <div class="hero-actions">
+      <a href="mailto:hello@husig.io" class="btn-primary">Request Access</a>
+      <a href="https://husig.io" class="btn-ghost" target="_blank">Learn about Husig</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">
+      © 2025 <strong>Husig</strong> — Leadswrap. Built in Nepal, for real estate teams everywhere.
+    </div>
+    <ul class="footer-links">
+      <li><a href="privacy_policy.html">Privacy Policy</a></li>
+      <li><a href="mailto:hello@husig.io">Contact</a></li>
+      <li><a href="https://husig.io" target="_blank">Husig.io</a></li>
+    </ul>
+  </footer>
+
 </body>
 </html>

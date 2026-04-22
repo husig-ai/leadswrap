@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Husig Close — V2 Product Scope</title>
+<style>
+  :root {
+    --ink: #1a1918;
+    --ink2: #3d3b38;
+    --ink3: #7a7872;
+    --rule: #e8e5de;
+    --rule2: #d4d0c8;
+    --bg: #ffffff;
+    --bg2: #f8f6f1;
+    --bg3: #f0ede6;
+    --accent: #1a3a5c;
+    --accent2: #2457a4;
+    --green: #1a6644;
+    --green-bg: #eaf4ee;
+    --purple: #3c3489;
+    --purple-bg: #eeedfe;
+    --amber: #7a4800;
+    --amber-bg: #fdf3e3;
+    --teal: #0d6657;
+    --teal-bg: #e3f4f0;
+    --coral: #8c3520;
+    --coral-bg: #fdf0ec;
+    --red: #8c1f1f;
+    --red-bg: #fdeaea;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, 'Segoe UI', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ink);
+    background: var(--bg);
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.96);
+    border-bottom: 1px solid var(--rule);
+    padding: 0 48px;
+    display: flex;
+    align-items: center;
+    height: 52px;
+    gap: 0;
+    backdrop-filter: blur(8px);
+  }
+  .nav-brand {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-right: 32px;
+    white-space: nowrap;
+  }
+  .nav-brand span { color: var(--ink3); font-weight: 400; }
+  .nav-links { display: flex; gap: 0; overflow-x: auto; flex: 1; }
+  .nav-links a {
+    font-size: 12.5px;
+    color: var(--ink3);
+    text-decoration: none;
+    padding: 0 14px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: color .15s, border-color .15s;
+  }
+  .nav-links a:hover { color: var(--ink); border-bottom-color: var(--accent2); }
+  .nav-tag {
+    margin-left: auto;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 12px;
+    background: var(--amber-bg);
+    color: var(--amber);
+    white-space: nowrap;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 72px 48px 56px;
+    max-width: 860px;
+  }
+  .hero-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-size: 44px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--accent);
+    margin-bottom: 20px;
+    letter-spacing: -.02em;
+  }
+  .hero h1 em { font-style: normal; color: var(--accent2); }
+  .hero-lead {
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--ink2);
+    max-width: 680px;
+    margin-bottom: 36px;
+  }
+  .hero-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .hero-pill {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 13px;
+    border-radius: 20px;
+    border: 1.5px solid var(--rule2);
+    color: var(--ink2);
+    background: var(--bg2);
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    padding: 56px 48px;
+    border-top: 1px solid var(--rule);
+    max-width: 1100px;
+  }
+  .section-header { margin-bottom: 32px; }
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 8px;
+  }
+  .section h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 10px;
+    letter-spacing: -.02em;
+    line-height: 1.2;
+  }
+  .section-intro {
+    font-size: 15.5px;
+    color: var(--ink2);
+    max-width: 720px;
+    line-height: 1.7;
+  }
+
+  /* ── GRID ── */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  @media(max-width:800px) {
+    .grid-2,.grid-3,.grid-4 { grid-template-columns: 1fr; }
+    nav { padding: 0 20px; }
+    .hero, .section { padding-left: 20px; padding-right: 20px; }
+    .hero h1 { font-size: 30px; }
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 22px 24px;
+  }
+  .card-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+  .card h3 {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 7px;
+  }
+  .card p {
+    font-size: 13.5px;
+    color: var(--ink2);
+    line-height: 1.6;
+  }
+  .card-accent { border-left: 3px solid var(--accent2); background: var(--bg); }
+  .card-purple { border-left: 3px solid var(--purple); background: var(--purple-bg); }
+  .card-teal   { border-left: 3px solid var(--teal);   background: var(--teal-bg); }
+  .card-green  { border-left: 3px solid var(--green);  background: var(--green-bg); }
+  .card-amber  { border-left: 3px solid var(--amber);  background: var(--amber-bg); }
+
+  /* ── JOURNEY ── */
+  .journey { margin-top: 8px; }
+  .jstep {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: flex-start;
+  }
+  .jstep:last-child { border-bottom: none; }
+  .jstep-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .jstep-body { flex: 1; }
+  .jstep-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 5px;
+  }
+  .jstep-desc {
+    font-size: 13.5px;
+    color: var(--ink2);
+    line-height: 1.65;
+  }
+  .jstep-save {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--green);
+    background: var(--green-bg);
+    padding: 3px 9px;
+    border-radius: 10px;
+    margin-top: 8px;
+    display: inline-block;
+  }
+
+  /* ── CALLOUT ── */
+  .callout {
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 24px 0;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+  .callout-blue   { background: #e8f0fc; color: #1a3a7c; border-left: 3px solid #2457a4; }
+  .callout-green  { background: var(--green-bg); color: var(--green); border-left: 3px solid var(--green); }
+  .callout-amber  { background: var(--amber-bg); color: var(--amber); border-left: 3px solid var(--amber); }
+  .callout-purple { background: var(--purple-bg); color: var(--purple); border-left: 3px solid var(--purple); }
+  .callout strong { font-weight: 700; }
+
+  /* ── STAT STRIP ── */
+  .stat-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 28px 0;
+  }
+  .stat {
+    background: var(--bg);
+    padding: 22px 20px;
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+    letter-spacing: -.02em;
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--ink3);
+    line-height: 1.4;
+  }
+  @media(max-width:700px) {
+    .stat-strip { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ── AI FEATURE BLOCK ── */
+  .ai-feature {
+    display: flex;
+    gap: 24px;
+    padding: 24px;
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    margin-bottom: 16px;
+    background: var(--bg);
+    align-items: flex-start;
+  }
+  .ai-feature-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: var(--purple-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .ai-feature-body { flex: 1; }
+  .ai-feature-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 5px;
+  }
+  .ai-feature-desc {
+    font-size: 13.5px;
+    color: var(--ink2);
+    line-height: 1.65;
+    margin-bottom: 8px;
+  }
+  .ai-feature-saves {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--purple);
+    background: var(--purple-bg);
+    padding: 3px 9px;
+    border-radius: 10px;
+    display: inline-block;
+  }
+
+  /* ── CHANNEL CARD ── */
+  .channel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin-top: 20px;
+  }
+  .channel {
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 18px 20px;
+    background: var(--bg);
+  }
+  .channel-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .channel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .channel p { font-size: 13px; color: var(--ink2); line-height: 1.55; }
+
+  /* ── SCOPING TABLE ── */
+  .scope-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+    margin-top: 20px;
+  }
+  .scope-table th {
+    background: var(--accent);
+    color: #fff;
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  .scope-table td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    color: var(--ink2);
+    line-height: 1.55;
+  }
+  .scope-table tr:nth-child(even) td { background: var(--bg2); }
+  .scope-table .feature { font-weight: 600; color: var(--ink); }
+  .in { color: var(--green); font-weight: 700; }
+  .out { color: var(--ink3); }
+  .later { color: var(--amber); font-weight: 600; }
+
+  /* ── DECISION BLOCK ── */
+  .decision {
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .decision-header {
+    background: var(--bg2);
+    padding: 14px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .decision-body { padding: 16px 20px; }
+  .decision-body p { font-size: 13.5px; color: var(--ink2); line-height: 1.65; margin-bottom: 10px; }
+  .decision-body p:last-child { margin-bottom: 0; }
+  .pro-con {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .pro, .con {
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .pro { background: var(--green-bg); color: var(--green); }
+  .pro strong, .con strong { display: block; font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 6px; opacity: .8; }
+  .con { background: var(--coral-bg); color: var(--coral); }
+  @media(max-width:600px) { .pro-con { grid-template-columns: 1fr; } }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 28px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  footer span { font-size: 12px; color: var(--ink3); }
+
+  /* ── DIVIDER ── */
+  .divider { height: 1px; background: var(--rule); margin: 32px 0; }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+    vertical-align: middle;
+    margin-left: 6px;
+  }
+  .badge-v2    { background: var(--accent); color: #fff; }
+  .badge-later { background: var(--amber-bg); color: var(--amber); }
+  .badge-live  { background: var(--green-bg); color: var(--green); }
+  .badge-open  { background: var(--purple-bg); color: var(--purple); }
+
+  /* ── PRINT ── */
+  @media print {
+    nav { display: none; }
+    .hero, .section { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">Husig <span>/ Close</span></div>
+  <div class="nav-links">
+    <a href="#overview">Overview</a>
+    <a href="#problem">The problem</a>
+    <a href="#journey">Agent journey</a>
+    <a href="#ai">AI features</a>
+    <a href="#messaging">Messaging</a>
+    <a href="#aggregators">Lead sources</a>
+    <a href="#scoring">Heat Score</a>
+    <a href="#calendar">Calendar</a>
+    <a href="#web">Web app</a>
+    <a href="#decisions">Open decisions</a>
+    <a href="#scope">V2 scope</a>
+  </div>
+  <div class="nav-tag">V2 · In development</div>
+</nav>
+
+<!-- ══════════════════════════════════════ HERO -->
+<div class="hero" id="overview">
+  <div class="hero-label">Husig Close — Product Scope V2</div>
+  <h1>The CRM that works<br><em>while you're on a showing</em></h1>
+  <p class="hero-lead">Husig Close is an AI-powered CRM built specifically for real estate agents. It captures every lead, responds instantly, qualifies automatically, and keeps every conversation in one place — so agents spend their time closing, not chasing.</p>
+  <div class="hero-pills">
+    <div class="hero-pill">iOS + Android</div>
+    <div class="hero-pill">Web dashboard</div>
+    <div class="hero-pill">AI reply drafting</div>
+    <div class="hero-pill">SMS + WhatsApp + Email</div>
+    <div class="hero-pill">Google Calendar sync</div>
+    <div class="hero-pill">Zillow + Facebook leads</div>
+    <div class="hero-pill">Heat Score</div>
+    <div class="hero-pill">Team support</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ THE PROBLEM -->
+<section class="section" id="problem">
+  <div class="section-header">
+    <div class="section-label">The problem</div>
+    <h2>Real estate agents are losing deals they don't even know about</h2>
+    <p class="section-intro">The average agent juggles leads from Zillow, Facebook, open houses, referrals, and walk-ins — spread across their inbox, phone, WhatsApp, and sticky notes. Most leads never get a reply within the first hour. That hour is everything.</p>
+  </div>
+
+  <div class="stat-strip">
+    <div class="stat">
+      <div class="stat-num">400%</div>
+      <div class="stat-label">drop in conversion after the first 5 minutes of silence</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">78%</div>
+      <div class="stat-label">of buyers choose the agent who responds first</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">11hrs</div>
+      <div class="stat-label">average agent response time to a new online enquiry</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">5+</div>
+      <div class="stat-label">tools the average agent uses to manage leads and comms</div>
+    </div>
+  </div>
+
+  <div class="grid-3">
+    <div class="card card-accent">
+      <h3>Leads fall through the cracks</h3>
+      <p>An enquiry comes in on Zillow at 9pm. The agent is with a client. By morning, that lead has already spoken to two other agents.</p>
+    </div>
+    <div class="card card-accent">
+      <h3>No idea who's actually serious</h3>
+      <p>Without qualification, every lead looks the same. Agents waste hours on browsers and not enough time on buyers who are ready to move this month.</p>
+    </div>
+    <div class="card card-accent">
+      <h3>Conversations are scattered</h3>
+      <p>A lead texts on WhatsApp, emails, then calls. The agent has no single view of that history. Every conversation starts from zero.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ JOURNEY -->
+<section class="section" id="journey">
+  <div class="section-header">
+    <div class="section-label">Agent journey</div>
+    <h2>From first enquiry to closed deal — in one place</h2>
+    <p class="section-intro">This is what an agent's day looks like with Husig Close. Every step that used to be manual is either automated or made dramatically faster.</p>
+  </div>
+
+  <div class="journey">
+    <div class="jstep">
+      <div class="jstep-num">1</div>
+      <div class="jstep-body">
+        <div class="jstep-title">A lead comes in — from anywhere</div>
+        <div class="jstep-desc">Whether it's a Zillow enquiry, a Facebook lead ad, a WhatsApp message, an SMS to your property sign, or someone you met at an open house — every lead lands in one place. Nothing slips through. You get a notification within seconds, with the lead's details and a Heat Score already calculated.</div>
+        <span class="jstep-save">No more checking multiple platforms</span>
+      </div>
+    </div>
+    <div class="jstep">
+      <div class="jstep-num">2</div>
+      <div class="jstep-body">
+        <div class="jstep-title">The AI replies before you even open the app</div>
+        <div class="jstep-desc">Within 60 seconds of a new lead arriving, Husig Close sends a personalised first message on your behalf — using the lead's name and the property they asked about. "Hi Sarah, thanks for reaching out about 42 Oak Street. Are you looking to book a viewing or just gathering info?" You can turn this off any time, but most agents leave it on once they see it working.</div>
+        <span class="jstep-save">Saves 15–30 min per new lead on first contact</span>
+      </div>
+    </div>
+    <div class="jstep">
+      <div class="jstep-num">3</div>
+      <div class="jstep-body">
+        <div class="jstep-title">You know exactly how serious they are</div>
+        <div class="jstep-desc">Every lead gets a Heat Score — a number from 0 to 100 based on six qualification signals: how specific their location preference is, how defined their budget is, how urgently they need to move, whether they're already working with an agent, how far along their mortgage is, and whether they've requested an appointment. The score updates every time they reply — if they say "I want to book a viewing this weekend," their score jumps immediately.</div>
+        <span class="jstep-save">Stop wasting time on leads who are just browsing</span>
+      </div>
+    </div>
+    <div class="jstep">
+      <div class="jstep-num">4</div>
+      <div class="jstep-body">
+        <div class="jstep-title">Every follow-up is drafted for you</div>
+        <div class="jstep-desc">When the lead replies — by SMS, WhatsApp, or email — you get a notification with a suggested reply already written, personalised to what they said and what you know about them. Tap Approve to send it. Tap Edit if you want to tweak it. Tap Discard if you want to write your own. You're always in control. The AI just does the first draft.</div>
+        <span class="jstep-save">Saves 5–10 min per reply across an active pipeline</span>
+      </div>
+    </div>
+    <div class="jstep">
+      <div class="jstep-num">5</div>
+      <div class="jstep-body">
+        <div class="jstep-title">Call when the time is right</div>
+        <div class="jstep-desc">When a lead's Heat Score hits Hot (75+), it's time to call. Open the lead, tap Call, and you're connected in-app — no dialling out to your phone. After the call, you log the outcome in two taps: Answered, No Answer, or Voicemail. Your notes and the call outcome are saved to the lead's timeline automatically.</div>
+        <span class="jstep-save">Full call history without extra note-taking</span>
+      </div>
+    </div>
+    <div class="jstep">
+      <div class="jstep-num">6</div>
+      <div class="jstep-body">
+        <div class="jstep-title">Book the showing — calendar sorts itself out</div>
+        <div class="jstep-desc">Tap "Schedule Showing", pick the property and time. Husig Close creates the event in your Google Calendar, sends a calendar invite to the lead, and sets reminders for both of you — 24 hours and 1 hour before. If the showing gets cancelled, the calendar event is updated automatically.</div>
+        <span class="jstep-save">Saves 10–15 min per showing on back-and-forth scheduling</span>
+      </div>
+    </div>
+    <div class="jstep">
+      <div class="jstep-num">7</div>
+      <div class="jstep-body">
+        <div class="jstep-title">Move them through the pipeline</div>
+        <div class="jstep-desc">Drag the lead card through your Kanban pipeline: New → Contacted → Qualified → Showing Scheduled → Offer Made → Closed. Every agent who's worked in real estate knows these stages. Everything is visible at a glance, on your phone or on the web. If you're running a team, you see your whole firm's pipeline in one view.</div>
+      </div>
+    </div>
+    <div class="jstep">
+      <div class="jstep-num">8</div>
+      <div class="jstep-body">
+        <div class="jstep-title">Close — and keep the history</div>
+        <div class="jstep-desc">Mark the lead as Converted. The full timeline — every message, call, showing, note, and AI interaction — is preserved. Useful when they refer a friend six months later and you want to remember the context. Commission is tracked in your analytics summary.</div>
+        <span class="jstep-save">Every deal tells a story you can revisit</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ AI FEATURES -->
+<section class="section" id="ai">
+  <div class="section-header">
+    <div class="section-label">AI features</div>
+    <h2>What the AI actually does — and what it doesn't</h2>
+    <p class="section-intro">Every AI feature in Husig Close is designed around one rule: the agent is always in control. The AI drafts, suggests, and summarises — it never sends anything without your approval, except the very first message (which you can disable).</p>
+  </div>
+
+  <div class="callout callout-amber">
+    <strong>What we are not building in V2:</strong> AI voice assistants that answer calls on your behalf, automated AI-to-lead conversations without agent oversight, or any feature that removes human judgment from a financial transaction. Real estate is a high-trust business. The AI supports the agent — it does not replace them.
+  </div>
+
+  <div class="ai-feature">
+    <div class="ai-feature-icon">⚡</div>
+    <div class="ai-feature-body">
+      <div class="ai-feature-title">Speed-to-lead auto-responder</div>
+      <div class="ai-feature-desc">The moment a new lead comes in, Husig Close sends a personalised first message within 60 seconds — without any action from you. It uses the lead's name, the property they enquired about, and a friendly opening question to start the conversation. This single feature is arguably the highest-ROI thing in the product. The window where you're most likely to get a reply is the first 5 minutes. The AI owns that window for you.</div>
+      <span class="ai-feature-saves">Replaces: manually crafting a first message for every new lead</span>
+    </div>
+  </div>
+
+  <div class="ai-feature">
+    <div class="ai-feature-icon">✍️</div>
+    <div class="ai-feature-body">
+      <div class="ai-feature-title">AI reply drafting (SMS, WhatsApp, email)</div>
+      <div class="ai-feature-desc">Every time a lead sends you a message — on any channel — Husig Close drafts a reply before you even open the thread. The draft is personalised using everything the system knows: what they asked about, what their budget is, what their urgency level is, and what you've already said to them. You review, edit if needed, and approve with one tap. The tone adjusts per channel — shorter and casual for SMS, more detailed for email.</div>
+      <span class="ai-feature-saves">Replaces: staring at a screen trying to figure out what to write back</span>
+    </div>
+  </div>
+
+  <div class="ai-feature">
+    <div class="ai-feature-icon">🎯</div>
+    <div class="ai-feature-body">
+      <div class="ai-feature-title">Heat Score — live lead qualification</div>
+      <div class="ai-feature-desc">Every lead has a score from 0 to 100 that tells you how ready they are to buy. It's calculated from six qualification signals — location certainty, budget clarity, motivation, mortgage status, whether they're already with another agent, and appointment commitment. The score updates in real time every time the lead sends a message. If they say something that signals urgency, the score jumps. If they go quiet for a week, it drifts down. Your pipeline stays sorted by who needs your attention most.</div>
+      <span class="ai-feature-saves">Replaces: gut feel about who's worth calling back today</span>
+    </div>
+  </div>
+
+  <div class="ai-feature">
+    <div class="ai-feature-icon">🏠</div>
+    <div class="ai-feature-body">
+      <div class="ai-feature-title">Smart property matching</div>
+      <div class="ai-feature-desc">Based on what a lead has told you — budget, location preference, property type, number of bedrooms, urgency — Husig Close ranks your property inventory and shows you the best matches. When the AI drafts a follow-up email or message, it pulls the top matching properties in automatically. The agent sees the draft with properties pre-populated and can swap or remove any of them before sending. It looks like you spent an hour researching. It took 10 seconds.</div>
+      <span class="ai-feature-saves">Replaces: manually browsing your listings to find what fits each lead</span>
+    </div>
+  </div>
+
+  <div class="ai-feature">
+    <div class="ai-feature-icon">🎤</div>
+    <div class="ai-feature-body">
+      <div class="ai-feature-title">Voice lead capture</div>
+      <div class="ai-feature-desc">At an open house, you meet a prospect and have a 3-minute conversation. Instead of scrambling for a notepad or trying to remember it all later, you tap the mic in the app and speak naturally while you talk with them — or immediately after. Husig Close transcribes the conversation and extracts the key details: name, phone, budget, what they're looking for, their timeline. You get a pre-filled lead form to review and confirm. The full audio and transcript are stored on the lead record.</div>
+      <span class="ai-feature-saves">Replaces: business cards, notepads, and "I'll remember this one"</span>
+    </div>
+  </div>
+
+  <div class="ai-feature">
+    <div class="ai-feature-icon">📝</div>
+    <div class="ai-feature-body">
+      <div class="ai-feature-title">Post-call notes (recorded calls only)</div>
+      <div class="ai-feature-desc">If you choose to record a call, Husig Close transcribes it after it ends and produces three things automatically: a 2-sentence summary of what was discussed, a sentiment tag (Motivated / Interested / Neutral / Hesitant), and an action items checklist extracted from the conversation — "Send floor plan," "Follow up Tuesday," "Check 3-bed availability." These are added to the lead's timeline. You can edit the summary before saving. No recording means no automatic notes — you fill in the outcome manually.</div>
+      <span class="ai-feature-saves">Replaces: post-call note-taking that nobody does consistently</span>
+    </div>
+  </div>
+
+  <div class="ai-feature">
+    <div class="ai-feature-icon">💬</div>
+    <div class="ai-feature-body">
+      <div class="ai-feature-title">WhatsApp voice note transcription</div>
+      <div class="ai-feature-desc">Many leads — especially in markets outside the US — prefer sending WhatsApp voice notes over typing. Husig Close automatically transcribes these voice notes the moment they arrive. The transcript is stored as the message text, intent is extracted from it, and the AI drafts a reply based on what was said. From your perspective, a voice note works exactly like a text message — you read the transcript, review the draft, and reply.</div>
+      <span class="ai-feature-saves">No more playing a voice note three times trying to remember what was said</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ MESSAGING -->
+<section class="section" id="messaging">
+  <div class="section-header">
+    <div class="section-label">Unified messaging</div>
+    <h2>Every conversation with every lead, in one thread</h2>
+    <p class="section-intro">Most agents have their SMS in their phone, WhatsApp on another screen, emails in their inbox, and call notes in a notebook. Husig Close puts all of it in a single timeline per lead — so you always know what was said, when, and on which channel.</p>
+  </div>
+
+  <div class="callout callout-blue">
+    <strong>The unified timeline:</strong> every SMS, WhatsApp message, email, call log, showing, and note appears chronologically in the lead's timeline. You never have to switch apps to remember what you last said to someone.
+  </div>
+
+  <div class="channel-grid">
+    <div class="channel">
+      <div class="channel-name"><div class="channel-dot" style="background:#25D366"></div>WhatsApp</div>
+      <p>Two-way conversations. Voice notes transcribed automatically. AI drafts replies. Works within WhatsApp's messaging rules — after 24 hours of inactivity, you send from pre-approved message templates instead of free-form text.</p>
+    </div>
+    <div class="channel">
+      <div class="channel-name"><div class="channel-dot" style="background:#2196F3"></div>SMS</div>
+      <p>Your dedicated Twilio number appears on your property signs and listings. Leads text in, you reply from the app. Full thread history. AI-drafted replies on every inbound message. No 24-hour restrictions.</p>
+    </div>
+    <div class="channel">
+      <div class="channel-name"><div class="channel-dot" style="background:#EA4335"></div>Email</div>
+      <p>AI drafts the subject line and email body using everything it knows about the lead and their matched properties. Sent from your email address via SendGrid. Replies land back in the lead's timeline — not your inbox.</p>
+    </div>
+    <div class="channel">
+      <div class="channel-name"><div class="channel-dot" style="background:#FF6B35"></div>Phone (in-app)</div>
+      <p>Call leads directly from the app without dialling out. Log the outcome in two taps. Optional recording with post-call AI notes. Call history visible in the timeline alongside all other messages.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="grid-2">
+    <div class="card card-teal">
+      <h3>Why agents stop switching apps</h3>
+      <p>When SMS, WhatsApp, email, and calls are all in one place, agents naturally use the app as their central workspace. Nothing gets missed because there's nothing to check elsewhere.</p>
+    </div>
+    <div class="card card-teal">
+      <h3>The lead sees consistency</h3>
+      <p>Whether they WhatsApp you, reply to your email, or text, the conversation continues seamlessly. The lead doesn't know or care how you manage it. They just know you always respond.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ AGGREGATORS -->
+<section class="section" id="aggregators">
+  <div class="section-header">
+    <div class="section-label">Lead sources & aggregator integration</div>
+    <h2>Every platform you advertise on, feeding into one inbox</h2>
+    <p class="section-intro">Real estate agents generate leads from many places. Husig Close connects to the platforms that actually move the needle — so leads flow in automatically instead of requiring manual copy-paste.</p>
+  </div>
+
+  <div class="callout callout-amber">
+    <strong>Honest note on MLS:</strong> MLS (Multiple Listing Service) is not a single API — it's 580+ regional databases in the US, each with different access rules and licensing requirements. Rather than building a brittle direct MLS integration in V2, we are connecting to the platforms agents actually get leads from (Zillow, Facebook, etc.) and letting agents manually add their property listings or import from a simple file. Full MLS sync is planned for a later release via a third-party data aggregator, once we have confirmed demand and the right partner.
+  </div>
+
+  <h3 style="margin-bottom:16px;font-size:14px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;">How aggregator integration works — in plain terms</h3>
+
+  <div class="journey">
+    <div class="jstep">
+      <div class="jstep-num">1</div>
+      <div class="jstep-body">
+        <div class="jstep-title">You connect your accounts once, in settings</div>
+        <div class="jstep-desc">In Husig Close settings, you connect your Zillow Premier Agent account, Realtor.com profile, or Facebook Business Manager. This is a one-time step that takes 2–5 minutes per platform. After that, everything is automatic.</div>
+      </div>
+    </div>
+    <div class="jstep">
+      <div class="jstep-num">2</div>
+      <div class="jstep-body">
+        <div class="jstep-title">A lead enquires on any connected platform</div>
+        <div class="jstep-desc">Someone fills in a Zillow contact form about your listing at 11pm. Someone submits your Facebook lead ad on a Sunday morning. The moment they do, that information is sent directly to Husig Close — name, phone number, email, and which property they were interested in.</div>
+      </div>
+    </div>
+    <div class="jstep">
+      <div class="jstep-num">3</div>
+      <div class="jstep-body">
+        <div class="jstep-title">The lead appears in your app within seconds</div>
+        <div class="jstep-desc">You get a push notification: "New lead from Zillow — Sarah Chen — interested in 42 Oak Street." The lead is already in your pipeline with a Heat Score, the property is already tagged, and the AI has already sent the first reply — all before you've touched your phone.</div>
+        <span class="jstep-save">No manual data entry. No checking Zillow's own app separately.</span>
+      </div>
+    </div>
+    <div class="jstep">
+      <div class="jstep-num">4</div>
+      <div class="jstep-body">
+        <div class="jstep-title">Source is tracked for every lead</div>
+        <div class="jstep-desc">Every lead is tagged with where it came from — Zillow, Facebook, open house, referral, or your direct SMS number. Over time, your analytics show you which platforms are actually delivering serious buyers versus browsers. You can make smarter decisions about where to spend your advertising budget.</div>
+        <span class="jstep-save">Know which platforms earn their spend</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <p style="font-size:13.5px;color:var(--ink3);margin-bottom:16px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">V2 connected sources</p>
+  <div class="grid-4">
+    <div class="card">
+      <h3>Zillow Premier Agent</h3>
+      <p style="font-size:13px;">Enquiries from Zillow listings flow in automatically. Property pre-tagged on the lead record.</p>
+    </div>
+    <div class="card">
+      <h3>Realtor.com</h3>
+      <p style="font-size:13px;">Leads from your Realtor.com profile and listings arrive instantly.</p>
+    </div>
+    <div class="card">
+      <h3>Facebook & Instagram ads</h3>
+      <p style="font-size:13px;">Lead ad form submissions delivered to Husig Close the moment someone fills in the form. Ad campaign name stored for attribution.</p>
+    </div>
+    <div class="card">
+      <h3>Any website or tool</h3>
+      <p style="font-size:13px;">If you use Zapier, Make, Google Forms, or a custom landing page, you can send leads directly to Husig Close with a simple connection. No technical knowledge required.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <p style="font-size:13.5px;color:var(--ink3);margin-bottom:16px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">Getting leads in — beyond the aggregators</p>
+  <div class="grid-3">
+    <div class="card">
+      <h3>SMS from your property sign</h3>
+      <p style="font-size:13px;">Print your Husig Close number on any sign or flyer. Someone texts in, a lead is created automatically, and the AI replies within 60 seconds.</p>
+    </div>
+    <div class="card">
+      <h3>WhatsApp QR code</h3>
+      <p style="font-size:13px;">Generate a QR code from the app. Put it on listings, social posts, or your email signature. Leads scan it and message you on WhatsApp — straight into your Husig Close inbox.</p>
+    </div>
+    <div class="card">
+      <h3>Open house check-in</h3>
+      <p style="font-size:13px;">Show visitors a QR code at the door. They fill in a short form on their phone. Lead created instantly with source tagged as the property address.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ HEAT SCORE -->
+<section class="section" id="scoring">
+  <div class="section-header">
+    <div class="section-label">Heat Score</div>
+    <h2>Know who to call — before you even open the lead</h2>
+    <p class="section-intro">Heat Score is Husig Close's lead qualification engine. It gives every lead a score from 0 to 100 based on six signals drawn from the real estate industry's LPMAMA qualification framework. The score updates live as the lead provides more information through conversation.</p>
+  </div>
+
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-icon" style="background:#e8f4fd;">📍</div>
+      <h3>Location certainty</h3>
+      <p>Do they know where they want to live? Have they specified a neighbourhood or are they open to anything? A lead with a specific location preference scores higher — they've done their homework.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon" style="background:#eaf4ee;">💰</div>
+      <h3>Budget clarity</h3>
+      <p>Is the budget range narrow and certain, or wide and unsure? A lead who says "between $480k and $500k, pre-approved" scores far higher than "somewhere around $500k, not sure yet."</p>
+    </div>
+    <div class="card">
+      <div class="card-icon" style="background:#fdf3e3;">🏃</div>
+      <h3>Motivation & urgency</h3>
+      <p>Are they relocating for a new job next month, or just casually browsing? Urgency is one of the strongest signals. Relocations and first-home buyers score high. Browsing scores low.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon" style="background:#eeedfe;">🤝</div>
+      <h3>Agent status</h3>
+      <p>Are they already working with another agent? A lead without an agent is a real opportunity. One who's already committed is lower priority — though still worth nurturing.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon" style="background:#fdf0ec;">🏦</div>
+      <h3>Mortgage readiness</h3>
+      <p>A cash buyer or pre-approved lead can move fast. Someone who hasn't started the mortgage process yet may be months away from being ready to offer. This is weighted heavily.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon" style="background:#e3f4f0;">📅</div>
+      <h3>Appointment intent</h3>
+      <p>Have they asked for a viewing, or been scheduled for one? Nothing signals readiness like booking time in your diary. A booked appointment is the strongest single signal in the score.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="grid-4">
+    <div class="card" style="border-top:3px solid #d32f2f;">
+      <h3 style="color:#d32f2f;">🔥 Hot (75–100)</h3>
+      <p style="font-size:13px;">Call within the hour. This lead is qualified, motivated, and ready. Don't wait.</p>
+    </div>
+    <div class="card" style="border-top:3px solid #f57c00;">
+      <h3 style="color:#f57c00;">🌤 Warm (50–74)</h3>
+      <p style="font-size:13px;">Follow up today. Strong signals on most dimensions. One good conversation could move this forward.</p>
+    </div>
+    <div class="card" style="border-top:3px solid #1565c0;">
+      <h3 style="color:#1565c0;">❄️ Cool (25–49)</h3>
+      <p style="font-size:13px;">Nurture weekly. Not ready yet but worth keeping warm. Let the AI handle the drip.</p>
+    </div>
+    <div class="card" style="border-top:3px solid #546e7a;">
+      <h3 style="color:#546e7a;">🧊 Cold (0–24)</h3>
+      <p style="font-size:13px;">Long-term drip only. Very early stage or very low intent. Don't spend manual time here.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ CALENDAR -->
+<section class="section" id="calendar">
+  <div class="section-header">
+    <div class="section-label">Google Calendar</div>
+    <h2>Schedule a showing in 10 seconds. The rest handles itself.</h2>
+    <p class="section-intro">Scheduling a showing manually involves texting the lead, waiting for a reply, sending calendar details, and then hoping they remember. Husig Close does all of that in one tap.</p>
+  </div>
+
+  <div class="grid-2">
+    <div>
+      <div class="jstep" style="border:none;padding-top:0;">
+        <div class="jstep-num" style="background:var(--teal);">1</div>
+        <div class="jstep-body">
+          <div class="jstep-title">Pick property and time</div>
+          <div class="jstep-desc">From the lead's profile, tap "Schedule Showing." Select the property and choose a time slot. That's it.</div>
+        </div>
+      </div>
+      <div class="jstep" style="border:none;">
+        <div class="jstep-num" style="background:var(--teal);">2</div>
+        <div class="jstep-body">
+          <div class="jstep-title">Event created in your Google Calendar</div>
+          <div class="jstep-desc">A calendar event appears with the lead's name, property address, and contact details. Your whole schedule stays in one place.</div>
+        </div>
+      </div>
+      <div class="jstep" style="border:none;">
+        <div class="jstep-num" style="background:var(--teal);">3</div>
+        <div class="jstep-body">
+          <div class="jstep-title">Lead receives a calendar invite</div>
+          <div class="jstep-desc">The lead gets a Google Calendar invite to their email with the address, time, and your contact details. They can accept, decline, or propose a new time.</div>
+        </div>
+      </div>
+      <div class="jstep" style="border:none;">
+        <div class="jstep-num" style="background:var(--teal);">4</div>
+        <div class="jstep-body">
+          <div class="jstep-title">Reminders fire automatically</div>
+          <div class="jstep-desc">24 hours before: you get a push notification, the lead gets an email reminder. 1 hour before: same. No chasing. No "just a reminder" texts to send manually.</div>
+          <span class="jstep-save">Saves 15+ min per showing on reminder admin</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card card-teal" style="margin-bottom:16px;">
+        <h3>If the showing is cancelled</h3>
+        <p>Mark it as cancelled in the app. The Google Calendar event is deleted automatically. The lead's status updates. No orphaned calendar entries.</p>
+      </div>
+      <div class="card card-teal" style="margin-bottom:16px;">
+        <h3>If you're part of a team</h3>
+        <p>Each agent's showings go into their own Google Calendar. The firm admin sees all showings across the whole team in the web dashboard's calendar view — monthly or weekly.</p>
+      </div>
+      <div class="card card-teal">
+        <h3>One-time setup</h3>
+        <p>Connect Google Calendar once from your profile settings. Husig Close handles the authorisation and keeps the connection alive automatically.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ WEB APP -->
+<section class="section" id="web">
+  <div class="section-header">
+    <div class="section-label">Web dashboard</div>
+    <h2>Everything the mobile app does — on a bigger screen</h2>
+    <p class="section-intro">The web dashboard is built for agents and admins who prefer working at a desk, or need to manage their team from a full screen. It covers all the same functionality as the mobile app, plus the team management and analytics views that make most sense on a larger display.</p>
+  </div>
+
+  <div class="grid-3">
+    <div class="card">
+      <h3>Lead list & detail</h3>
+      <p style="font-size:13px;">Search and filter all your leads by status, score, or source. Click any lead to see their full profile — Heat Score breakdown, enrichment data, and complete message timeline.</p>
+    </div>
+    <div class="card">
+      <h3>Pipeline (Kanban)</h3>
+      <p style="font-size:13px;">Drag-and-drop pipeline with the same stages as the mobile app. Useful for a weekly review session when you want to see the whole picture.</p>
+    </div>
+    <div class="card">
+      <h3>Properties</h3>
+      <p style="font-size:13px;">Add, edit, and manage your property listings. See which leads are matched to each property. Easier to manage on desktop than mobile when you have many listings.</p>
+    </div>
+    <div class="card">
+      <h3>Calendar</h3>
+      <p style="font-size:13px;">Monthly and weekly view of all upcoming showings. Click any event to see the lead and property details. Admins see showings across the full team.</p>
+    </div>
+    <div class="card">
+      <h3>Analytics</h3>
+      <p style="font-size:13px;">Pipeline conversion, lead sources, Heat Score distribution, response rates by channel, and monthly trends. Helps you understand where to focus and which lead sources are worth the spend.</p>
+    </div>
+    <div class="card">
+      <h3>Settings & team</h3>
+      <p style="font-size:13px;">Connect integrations, manage team members, configure auto-responder settings, and handle billing — all from the settings area.</p>
+    </div>
+  </div>
+
+  <div class="callout callout-blue" style="margin-top:24px;">
+    <strong>Built for speed, not complexity.</strong> The web app is designed to load fast and work without a degree in software. If you can use Gmail, you can use Husig Close on the web.
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ TEAM -->
+<section class="section" id="team">
+  <div class="section-header">
+    <div class="section-label">Team & firm support</div>
+    <h2>Built for solo agents. Scales to a full brokerage.</h2>
+    <p class="section-intro">Husig Close works as a personal tool for a single agent and as a team platform for a firm with 20+ agents. Adding teammates takes two minutes. Each agent sees only their own leads. Admins see everything.</p>
+  </div>
+
+  <div class="grid-3">
+    <div class="card card-purple">
+      <h3>Solo agent</h3>
+      <p style="font-size:13px;">Full access to all features. You own your workspace, manage your own leads, and connect your own integrations. Nothing is shared unless you want it to be.</p>
+    </div>
+    <div class="card card-purple">
+      <h3>Team agent</h3>
+      <p style="font-size:13px;">Invited by a firm admin. Works their own leads with the full AI and communication suite. Cannot see other agents' leads or client data. Their calendar is their own.</p>
+    </div>
+    <div class="card card-purple">
+      <h3>Firm admin</h3>
+      <p style="font-size:13px;">Sees the full pipeline across all agents. Can reassign leads, view cross-agent analytics, manage team seats, configure workspace settings, and handle billing.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ OPEN DECISIONS -->
+<section class="section" id="decisions">
+  <div class="section-header">
+    <div class="section-label">Open decisions</div>
+    <h2>What we still need to resolve before building</h2>
+    <p class="section-intro">These are not blockers — development can start while these are discussed. But they affect scope, design, and how we describe the product to agents.</p>
+  </div>
+
+  <div class="decision">
+    <div class="decision-header">
+      <span class="badge badge-open">Open</span>
+      Web app: Jinja/HTMX served from our backend vs Next.js as a separate frontend
+    </div>
+    <div class="decision-body">
+      <p>Both options deliver the same 8-page web app to users. The difference is infrastructure complexity and the skill set required to maintain it.</p>
+      <div class="pro-con">
+        <div class="pro">
+          <strong>Jinja + HTMX (simpler)</strong>
+          Web app is served directly from our FastAPI backend. No separate deployment. No Node.js. Pages load server-side. HTMX handles dynamic interactions. Lower maintenance overhead. One EC2 instance covers everything.
+        </div>
+        <div class="con">
+          <strong>Next.js (more capable)</strong>
+          More flexible for complex UI interactions. Larger ecosystem of components. Easier to hand off to a frontend developer who knows React. Requires a separate deployment (Vercel or another EC2). More moving parts.
+        </div>
+      </div>
+      <p style="margin-top:12px;">Our current recommendation: start with Jinja/HTMX for V2. The web app is a dashboard — not a rich interactive application. The complexity of Next.js is not needed yet. Revisit in V3 if the web app becomes a primary product surface.</p>
+    </div>
+  </div>
+
+  <div class="decision">
+    <div class="decision-header">
+      <span class="badge badge-open">Open</span>
+      Lead assignment in a team — manual only or automatic round-robin?
+    </div>
+    <div class="decision-body">
+      <p>Today, leads are assigned to the agent who created them, or manually reassigned by the admin. For firms that get high inbound volumes from aggregators, manual assignment becomes a bottleneck.</p>
+      <div class="pro-con">
+        <div class="pro">
+          <strong>Manual assignment (V2)</strong>
+          Simpler. Admin has full control. No edge cases to handle (what if an agent is on holiday?). Works for most small teams.
+        </div>
+        <div class="con">
+          <strong>Round-robin auto-assignment (V2 or V3)</strong>
+          Eliminates admin overhead for high-volume firms. Requires rules around availability, capacity, and specialisation. More complex to build and explain.
+        </div>
+      </div>
+      <p style="margin-top:12px;">Recommendation: ship manual assignment in V2. Add round-robin as a configurable option in V3 once we understand how firm admins actually assign leads in practice.</p>
+    </div>
+  </div>
+
+  <div class="decision">
+    <div class="decision-header">
+      <span class="badge badge-open">Open</span>
+      WhatsApp number — one per firm or one per agent?
+    </div>
+    <div class="decision-body">
+      <p>Twilio allows WhatsApp Business numbers to be provisioned per account. The question is whether every agent in a firm gets their own WA number, or whether the firm shares one number with leads routed to the right agent.</p>
+      <div class="pro-con">
+        <div class="pro">
+          <strong>One shared firm number (V2)</strong>
+          Simpler to set up and manage. All inbound WA messages go to one place, then get assigned. Leads message the firm, not the individual agent. Lower cost.
+        </div>
+        <div class="con">
+          <strong>One per agent (later)</strong>
+          More personal — leads message their specific agent directly. Harder to manage at scale. More Twilio accounts and configurations.
+        </div>
+      </div>
+      <p style="margin-top:12px;">Recommendation: one shared firm number for V2. Agents can have individual SMS numbers from day one.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ SCOPE TABLE -->
+<section class="section" id="scope">
+  <div class="section-header">
+    <div class="section-label">V2 scope</div>
+    <h2>What's in, what's out, what's later</h2>
+    <p class="section-intro">This is the agreed scope for the V2 release on July 19, 2026. Features marked "later" are not cut — they are deferred to V3 with clear reasons.</p>
+  </div>
+
+  <table class="scope-table">
+    <thead>
+      <tr>
+        <th style="width:30%;">Feature</th>
+        <th style="width:12%;">Status</th>
+        <th>What the agent gets</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="feature">Lead capture — manual form + voice</td><td><span class="in">✓ V2</span></td><td>Add leads by form or by speaking. Voice capture uses AI to extract lead details from a recorded conversation.</td></tr>
+      <tr><td class="feature">Lead capture — SMS inbound</td><td><span class="in">✓ V2</span></td><td>Leads text your dedicated number. Auto-created in the app. Speed-to-lead reply fires within 60 seconds.</td></tr>
+      <tr><td class="feature">Lead capture — WhatsApp inbound</td><td><span class="in">✓ V2</span></td><td>Leads message via WA from a QR code or link. Voice notes transcribed automatically.</td></tr>
+      <tr><td class="feature">Lead capture — Zillow Premier Agent</td><td><span class="in">✓ V2</span></td><td>Connect Zillow account. Enquiries appear in Husig Close instantly, property pre-tagged.</td></tr>
+      <tr><td class="feature">Lead capture — Realtor.com</td><td><span class="in">✓ V2</span></td><td>Connect Realtor.com profile. Same automatic flow as Zillow.</td></tr>
+      <tr><td class="feature">Lead capture — Facebook / Instagram lead ads</td><td><span class="in">✓ V2</span></td><td>Connect Meta Business Manager. Form submissions land in Husig Close with ad attribution.</td></tr>
+      <tr><td class="feature">Lead capture — open house QR</td><td><span class="in">✓ V2</span></td><td>Generate a QR code from the app. Visitors fill a short form on their phone. Lead created instantly.</td></tr>
+      <tr><td class="feature">Heat Score (LPMAMA)</td><td><span class="in">✓ V2</span></td><td>0–100 score on every lead. Six qualification dimensions. Updates live with every message. Hot / Warm / Cool / Cold tiers.</td></tr>
+      <tr><td class="feature">Speed-to-lead auto-responder</td><td><span class="in">✓ V2</span></td><td>AI sends personalised first message within 60 seconds. Agent-configurable on/off.</td></tr>
+      <tr><td class="feature">AI reply drafting — SMS + WhatsApp</td><td><span class="in">✓ V2</span></td><td>Draft suggested reply on every inbound message. Agent approves, edits, or discards.</td></tr>
+      <tr><td class="feature">AI reply drafting — email</td><td><span class="in">✓ V2</span></td><td>AI drafts subject + body using lead profile and matched properties. Agent sends from their own email address.</td></tr>
+      <tr><td class="feature">WhatsApp voice note transcription</td><td><span class="in">✓ V2</span></td><td>Voice notes automatically transcribed. Intent extracted. Reply drafted from the transcript.</td></tr>
+      <tr><td class="feature">Outbound calls (in-app)</td><td><span class="in">✓ V2</span></td><td>Call leads from the app. Outcome logged in two taps. Call history in timeline.</td></tr>
+      <tr><td class="feature">Post-call AI notes</td><td><span class="in">✓ V2</span></td><td>Recorded calls transcribed and summarised automatically: 2-sentence summary, sentiment, action items checklist.</td></tr>
+      <tr><td class="feature">Unified messaging timeline</td><td><span class="in">✓ V2</span></td><td>All SMS, WA, email, calls, and notes in one chronological thread per lead.</td></tr>
+      <tr><td class="feature">Smart property matching</td><td><span class="in">✓ V2</span></td><td>AI ranks inventory against lead profile. Top matches shown in lead detail and auto-inserted into drafted messages.</td></tr>
+      <tr><td class="feature">Google Calendar sync</td><td><span class="in">✓ V2</span></td><td>Schedule showings from the app. Calendar event created, lead invited, reminders set automatically.</td></tr>
+      <tr><td class="feature">Kanban pipeline</td><td><span class="in">✓ V2</span></td><td>Drag-and-drop pipeline with 9 stages. Available on mobile and web.</td></tr>
+      <tr><td class="feature">iOS + Android app</td><td><span class="in">✓ V2</span></td><td>First iOS release alongside existing Android. App Store and Play Store submission.</td></tr>
+      <tr><td class="feature">Web dashboard (8 pages)</td><td><span class="in">✓ V2</span></td><td>Leads, pipeline, properties, calendar, analytics, settings, team — all accessible from any browser.</td></tr>
+      <tr><td class="feature">Team support + agent management</td><td><span class="in">✓ V2</span></td><td>Invite agents, manage seats, reassign leads. Admin sees firm-wide analytics and pipeline.</td></tr>
+      <tr><td class="feature">Clickable push notifications</td><td><span class="in">✓ V2</span></td><td>Every notification tap opens the exact right screen on iOS and Android.</td></tr>
+      <tr><td class="feature">Lead enrichment (basic)</td><td><span class="in">✓ V2</span></td><td>Email and phone validation runs automatically on every lead. Shown as verified/unverified badges.</td></tr>
+      <tr><td class="feature">Lead enrichment (company + social)</td><td><span class="in">✓ V2</span></td><td>Clearbit and FullContact data for richer lead profiles. Company, job title, LinkedIn, social presence.</td></tr>
+      <tr><td class="feature">Analytics dashboard</td><td><span class="in">✓ V2</span></td><td>Pipeline conversion, lead sources, Heat Score distribution, response rates by channel, monthly trends.</td></tr>
+      <tr><td class="feature">Scheduled messages</td><td><span class="in">✓ V2 (live)</span></td><td>Schedule an SMS to send at a specific future time. Already live in V1.</td></tr>
+      <tr><td class="feature">Call recording compliance</td><td><span class="out">✗ Not V2</span></td><td>Auto-detection of two-party consent states and compliance whisper. Deferred — keeping call recording simple in V2 with no recording-specific legal features.</td></tr>
+      <tr><td class="feature">MLS direct integration</td><td><span class="later">→ V3</span></td><td>Full property sync from MLS boards via a data aggregator (Bridge, Trestle). Manual import + Zillow covers V2 needs.</td></tr>
+      <tr><td class="feature">Round-robin lead assignment</td><td><span class="later">→ V3</span></td><td>Auto-distribute inbound leads across team agents. Manual assignment is sufficient for V2 team sizes.</td></tr>
+      <tr><td class="feature">AI voice assistant (answers calls)</td><td><span class="out">✗ Not planned</span></td><td>Out of scope. The AI drafts and supports — it does not replace human judgment in client conversations.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<footer>
+  <span>Husig Close — V2 Product Scope · husig.ai</span>
+  <span>Build window: Apr 26 – Jul 19, 2026 · Internal use only</span>
+</footer>
+
+</body>
+</html>

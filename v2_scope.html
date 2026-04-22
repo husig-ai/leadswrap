@@ -519,7 +519,7 @@
   <div class="section-header">
     <div class="section-label">The problem</div>
     <h2>Real estate agents are losing deals they don't even know about</h2>
-    <p class="section-intro">The average agent juggles leads from Zillow, Facebook, open houses, referrals, and walk-ins — spread across their inbox, phone, WhatsApp, and sticky notes. Most leads never get a reply within the first hour. That hour is everything.</p>
+    <p class="section-intro">The average agent juggles leads from Zillow, Facebook, open houses, and referrals — spread across their inbox, phone, and sticky notes. Most leads never get a reply within the first hour. That hour is everything.</p>
   </div>
 
   <div class="stat-strip">
@@ -648,7 +648,7 @@
     <div class="ai-feature-icon">⚡</div>
     <div class="ai-feature-body">
       <div class="ai-feature-title">Speed-to-lead auto-responder</div>
-      <div class="ai-feature-desc">The moment a new lead comes in, Husig Close sends a personalised first message within 60 seconds — without any action from you. It uses the lead's name, the property they enquired about, and a friendly opening question to start the conversation. This single feature is arguably the highest-ROI thing in the product. The window where you're most likely to get a reply is the first 5 minutes. The AI owns that window for you.</div>
+      <div class="ai-feature-desc">The moment a new lead comes in, Husig Close sends a personalised first email within 60 seconds — without any action from you. It uses the lead's name, the property they enquired about, and a friendly opening question to start the conversation. This single feature is arguably the highest-ROI thing in the product. The window where you're most likely to get a reply is the first 5 minutes. The AI owns that window for you.</div>
       <span class="ai-feature-saves">Replaces: manually crafting a first message for every new lead</span>
     </div>
   </div>
@@ -768,14 +768,6 @@
       <p style="font-size:13px;">When someone fills in your Facebook or Instagram lead ad form, their details land in Husig Close within seconds. This is a direct integration we own completely — no certification required. Ad campaign name is stored on the lead so you know which ad generated it.</p>
     </div>
     <div class="card card-green">
-      <h3>SMS from your property sign or flyer</h3>
-      <p style="font-size:13px;">Your dedicated Husig Close number goes on your signs, flyers, and listings. Someone texts in — a lead is created instantly, and the AI replies within 60 seconds. You own this number, it works everywhere, and there are no platform dependencies.</p>
-    </div>
-    <div class="card card-green">
-      <h3>WhatsApp QR code</h3>
-      <p style="font-size:13px;">Generate a QR code from the app and put it on listings, social posts, or your email signature. Leads scan it and message you directly on WhatsApp — straight into your Husig Close inbox, with full AI reply drafting.</p>
-    </div>
-    <div class="card card-green">
       <h3>Open house check-in</h3>
       <p style="font-size:13px;">Show a QR code at the door. Visitors fill in a short form on their phone. Lead created instantly, source tagged as that property's address.</p>
     </div>
@@ -825,7 +817,7 @@
       <div class="jstep-num">1</div>
       <div class="jstep-body">
         <div class="jstep-title">Lead lands in Husig Close</div>
-        <div class="jstep-desc">Whether it came from Facebook, a Zapier-forwarded Zillow enquiry, a WhatsApp message, or an SMS — the experience from here is identical. The lead is created with their name, phone, email, and which property they were interested in. Source is tagged automatically.</div>
+        <div class="jstep-desc">Whether it came from Facebook, a Zapier-forwarded Zillow enquiry, an email enquiry, or an open house form — the experience from here is identical. The lead is created with their name, phone, email, and which property they were interested in. Source is tagged automatically.</div>
       </div>
     </div>
     <div class="jstep">
@@ -932,7 +924,7 @@
   <div class="section-header">
     <div class="section-label">Google Calendar</div>
     <h2>Schedule a showing in 10 seconds. The rest handles itself.</h2>
-    <p class="section-intro">Scheduling a showing manually involves texting the lead, waiting for a reply, sending calendar details, and then hoping they remember. Husig Close does all of that in one tap.</p>
+    <p class="section-intro">Scheduling a showing manually involves emailing the lead back and forth, sending calendar details separately, and then hoping they remember. Husig Close does all of that in one tap.</p>
   </div>
 
   <div class="grid-2">
@@ -1098,26 +1090,7 @@
     </div>
   </div>
 
-  <div class="decision">
-    <div class="decision-header">
-      <span class="badge badge-open">Open</span>
-      WhatsApp number — one per firm or one per agent?
-    </div>
-    <div class="decision-body">
-      <p>Twilio allows WhatsApp Business numbers to be provisioned per account. The question is whether every agent in a firm gets their own WA number, or whether the firm shares one number with leads routed to the right agent.</p>
-      <div class="pro-con">
-        <div class="pro">
-          <strong>One shared firm number (V2)</strong>
-          Simpler to set up and manage. All inbound WA messages go to one place, then get assigned. Leads message the firm, not the individual agent. Lower cost.
-        </div>
-        <div class="con">
-          <strong>One per agent (later)</strong>
-          More personal — leads message their specific agent directly. Harder to manage at scale. More Twilio accounts and configurations.
-        </div>
-      </div>
-      <p style="margin-top:12px;">Recommendation: one shared firm number for V2. Agents can have individual SMS numbers from day one.</p>
-    </div>
-  </div>
+
 </section>
 
 <!-- ══════════════════════════════════════ SCOPE TABLE -->
@@ -1138,20 +1111,16 @@
     </thead>
     <tbody>
       <tr><td class="feature">Lead capture — manual form + voice</td><td><span class="in">✓ V2</span></td><td>Add leads by form or by speaking. Voice capture uses AI to extract lead details from a recorded conversation.</td></tr>
-      <tr><td class="feature">Lead capture — SMS inbound</td><td><span class="in">✓ V2</span></td><td>Leads text your dedicated number. Auto-created in the app. Speed-to-lead reply fires within 60 seconds.</td></tr>
-      <tr><td class="feature">Lead capture — WhatsApp inbound</td><td><span class="in">✓ V2</span></td><td>Leads message via WA from a QR code or link. Voice notes transcribed automatically.</td></tr>
       <tr><td class="feature">Lead capture — Zillow Premier Agent</td><td><span class="later">⏳ Pending</span></td><td>Direct integration requires Zillow Tech Connect certification — application in progress. In V2, agents can forward Zillow leads via Zapier (10-minute setup, functionally identical once running).</td></tr>
       <tr><td class="feature">Lead capture — Realtor.com</td><td><span class="later">⏳ Pending</span></td><td>Same as Zillow — requires Connections Plus certification. Zapier workaround available from launch. Direct integration to follow once certified.</td></tr>
       <tr><td class="feature">Lead capture — Facebook / Instagram lead ads</td><td><span class="in">✓ V2</span></td><td>Connect Meta Business Manager. Form submissions land in Husig Close with ad attribution.</td></tr>
       <tr><td class="feature">Lead capture — open house QR</td><td><span class="in">✓ V2</span></td><td>Generate a QR code from the app. Visitors fill a short form on their phone. Lead created instantly.</td></tr>
-      <tr><td class="feature">Heat Score (LPMAMA)</td><td><span class="in">✓ V2</span></td><td>0–100 score on every lead. Six qualification dimensions. Updates live with every message. Hot / Warm / Cool / Cold tiers.</td></tr>
-      <tr><td class="feature">Speed-to-lead auto-responder</td><td><span class="in">✓ V2</span></td><td>AI sends personalised first message within 60 seconds. Agent-configurable on/off.</td></tr>
-      <tr><td class="feature">AI reply drafting — SMS + WhatsApp</td><td><span class="in">✓ V2</span></td><td>Draft suggested reply on every inbound message. Agent approves, edits, or discards.</td></tr>
-      <tr><td class="feature">AI reply drafting — email</td><td><span class="in">✓ V2</span></td><td>AI drafts subject + body using lead profile and matched properties. Agent sends from their own email address.</td></tr>
-      <tr><td class="feature">WhatsApp voice note transcription</td><td><span class="in">✓ V2</span></td><td>Voice notes automatically transcribed. Intent extracted. Reply drafted from the transcript.</td></tr>
+      <tr><td class="feature">Heat Score (LPMAMA)</td><td><span class="in">✓ V2</span></td><td>0–100 score on every lead. Six qualification dimensions. Updates live with every email reply. Hot / Warm / Cool / Cold tiers.</td></tr>
+      <tr><td class="feature">Speed-to-lead auto-responder (email)</td><td><span class="in">✓ V2</span></td><td>AI sends a personalised first email within 60 seconds of a new lead arriving. Agent-configurable on/off.</td></tr>
+      <tr><td class="feature">AI reply drafting — email</td><td><span class="in">✓ V2</span></td><td>Draft suggested reply on every inbound email. Agent approves, edits, or discards.</td></tr>
       <tr><td class="feature">Outbound calls (in-app)</td><td><span class="in">✓ V2</span></td><td>Call leads from the app. Outcome logged in two taps. Call history in timeline.</td></tr>
       <tr><td class="feature">Post-call AI notes</td><td><span class="in">✓ V2</span></td><td>Recorded calls transcribed and summarised automatically: 2-sentence summary, sentiment, action items checklist.</td></tr>
-      <tr><td class="feature">Unified messaging timeline</td><td><span class="in">✓ V2</span></td><td>All SMS, WA, email, calls, and notes in one chronological thread per lead.</td></tr>
+      <tr><td class="feature">Unified timeline (email + calls + notes)</td><td><span class="in">✓ V2</span></td><td>All emails, call logs, showings, and notes in one chronological thread per lead.</td></tr>
       <tr><td class="feature">Smart property matching</td><td><span class="in">✓ V2</span></td><td>AI ranks inventory against lead profile. Top matches shown in lead detail and auto-inserted into drafted messages.</td></tr>
       <tr><td class="feature">Google Calendar sync</td><td><span class="in">✓ V2</span></td><td>Schedule showings from the app. Calendar event created, lead invited, reminders set automatically.</td></tr>
       <tr><td class="feature">Kanban pipeline</td><td><span class="in">✓ V2</span></td><td>Drag-and-drop pipeline with 9 stages. Available on mobile and web.</td></tr>
@@ -1161,10 +1130,10 @@
       <tr><td class="feature">Clickable push notifications</td><td><span class="in">✓ V2</span></td><td>Every notification tap opens the exact right screen on iOS and Android.</td></tr>
       <tr><td class="feature">Lead enrichment (basic)</td><td><span class="in">✓ V2</span></td><td>Email and phone validation runs automatically on every lead. Shown as verified/unverified badges.</td></tr>
       <tr><td class="feature">Lead enrichment (company + social)</td><td><span class="in">✓ V2</span></td><td>Clearbit and FullContact data for richer lead profiles. Company, job title, LinkedIn, social presence.</td></tr>
-      <tr><td class="feature">Analytics dashboard</td><td><span class="in">✓ V2</span></td><td>Pipeline conversion, lead sources, Heat Score distribution, response rates by channel, monthly trends.</td></tr>
-      <tr><td class="feature">Scheduled messages</td><td><span class="in">✓ V2 (live)</span></td><td>Schedule an SMS to send at a specific future time. Already live in V1.</td></tr>
-      <tr><td class="feature">Call recording compliance</td><td><span class="out">✗ Not V2</span></td><td>Auto-detection of two-party consent states and compliance whisper. Deferred — keeping call recording simple in V2 with no recording-specific legal features.</td></tr>
-      <tr><td class="feature">MLS direct integration</td><td><span class="later">→ V3</span></td><td>Full property sync from MLS boards via a data aggregator (Bridge, Trestle). Manual import + Zillow covers V2 needs.</td></tr>
+      <tr><td class="feature">Analytics dashboard</td><td><span class="in">✓ V2</span></td><td>Pipeline conversion, lead sources, Heat Score distribution, email response rates, monthly trends.</td></tr>
+      <tr><td class="feature">SMS + WhatsApp messaging</td><td><span class="later">→ V3</span></td><td>Two-way SMS and WhatsApp with AI reply drafting. Deferred to keep V2 scope focused. Email and in-app calls cover outreach in V2.</td></tr>
+      <tr><td class="feature">Call recording compliance</td><td><span class="out">✗ Not V2</span></td><td>Auto-detection of two-party consent states and compliance whisper. Deferred — call recording in V2 is simple on/off with no legal automation.</td></tr>
+      <tr><td class="feature">MLS direct integration</td><td><span class="later">→ V3</span></td><td>Full property sync from MLS boards via a data aggregator. Manual import covers V2 needs.</td></tr>
       <tr><td class="feature">Round-robin lead assignment</td><td><span class="later">→ V3</span></td><td>Auto-distribute inbound leads across team agents. Manual assignment is sufficient for V2 team sizes.</td></tr>
       <tr><td class="feature">AI voice assistant (answers calls)</td><td><span class="out">✗ Not planned</span></td><td>Out of scope. The AI drafts and supports — it does not replace human judgment in client conversations.</td></tr>
     </tbody>

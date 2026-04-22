@@ -400,6 +400,7 @@
   .in { color: var(--green); font-weight: 700; }
   .out { color: var(--ink3); }
   .later { color: var(--amber); font-weight: 600; }
+  .pending { color: var(--amber); font-weight: 700; }
 
   /* ── DECISION BLOCK ── */
   .decision {
@@ -507,7 +508,7 @@
     <div class="hero-pill">AI reply drafting</div>
     <div class="hero-pill">SMS + WhatsApp + Email</div>
     <div class="hero-pill">Google Calendar sync</div>
-    <div class="hero-pill">Zillow + Facebook leads</div>
+    <div class="hero-pill">Facebook & Instagram leads</div>
     <div class="hero-pill">Heat Score</div>
     <div class="hero-pill">Team support</div>
   </div>
@@ -543,7 +544,7 @@
   <div class="grid-3">
     <div class="card card-accent">
       <h3>Leads fall through the cracks</h3>
-      <p>An enquiry comes in on Zillow at 9pm. The agent is with a client. By morning, that lead has already spoken to two other agents.</p>
+      <p>An enquiry comes in on a portal at 9pm. The agent is with a client. By morning, that lead has already spoken to two other agents.</p>
     </div>
     <div class="card card-accent">
       <h3>No idea who's actually serious</h3>
@@ -569,7 +570,7 @@
       <div class="jstep-num">1</div>
       <div class="jstep-body">
         <div class="jstep-title">A lead comes in — from anywhere</div>
-        <div class="jstep-desc">Whether it's a Zillow enquiry, a Facebook lead ad, a WhatsApp message, an SMS to your property sign, or someone you met at an open house — every lead lands in one place. Nothing slips through. You get a notification within seconds, with the lead's details and a Heat Score already calculated.</div>
+        <div class="jstep-desc">Whether it's a Facebook lead ad, a WhatsApp message, an SMS to your property sign, someone you met at an open house, or a Zillow enquiry forwarded via Zapier — every lead lands in one place. Nothing slips through. You get a notification within seconds, with the lead's details and a Heat Score already calculated.</div>
         <span class="jstep-save">No more checking multiple platforms</span>
       </div>
     </div>
@@ -756,87 +757,117 @@
 <section class="section" id="aggregators">
   <div class="section-header">
     <div class="section-label">Lead sources & aggregator integration</div>
-    <h2>Every platform you advertise on, feeding into one inbox</h2>
-    <p class="section-intro">Real estate agents generate leads from many places. Husig Close connects to the platforms that actually move the needle — so leads flow in automatically instead of requiring manual copy-paste.</p>
+    <h2>Every place you get leads, feeding into one inbox</h2>
+    <p class="section-intro">Real estate agents get leads from many places — and Husig Close brings them all together. But not every platform works the same way. Here is exactly what connects automatically, what requires a workaround today, and what is coming later.</p>
   </div>
 
   <div class="callout callout-amber">
-    <strong>Honest note on MLS:</strong> MLS (Multiple Listing Service) is not a single API — it's 580+ regional databases in the US, each with different access rules and licensing requirements. Rather than building a brittle direct MLS integration in V2, we are connecting to the platforms agents actually get leads from (Zillow, Facebook, etc.) and letting agents manually add their property listings or import from a simple file. Full MLS sync is planned for a later release via a third-party data aggregator, once we have confirmed demand and the right partner.
+    <strong>Important note on Zillow and Realtor.com:</strong> Both platforms require CRM vendors to go through a formal certification process before they can receive lead data automatically. This is not a quick integration — it takes weeks to months to get approved, and both platforms reserve the right to decline. We are applying for both certifications. Until approved, agents can use a Zapier workaround to forward leads from those platforms into Husig Close. This is covered below.
   </div>
 
-  <h3 style="margin-bottom:16px;font-size:14px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.06em;">How aggregator integration works — in plain terms</h3>
+  <div class="divider"></div>
+
+  <p style="font-size:13.5px;color:var(--ink3);margin-bottom:20px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">What we fully control — available from day one</p>
+
+  <div class="grid-3" style="margin-bottom:32px;">
+    <div class="card card-green">
+      <h3>Facebook & Instagram lead ads</h3>
+      <p style="font-size:13px;">When someone fills in your Facebook or Instagram lead ad form, their details land in Husig Close within seconds. This is a direct integration we own completely — no certification required. Ad campaign name is stored on the lead so you know which ad generated it.</p>
+    </div>
+    <div class="card card-green">
+      <h3>SMS from your property sign or flyer</h3>
+      <p style="font-size:13px;">Your dedicated Husig Close number goes on your signs, flyers, and listings. Someone texts in — a lead is created instantly, and the AI replies within 60 seconds. You own this number, it works everywhere, and there are no platform dependencies.</p>
+    </div>
+    <div class="card card-green">
+      <h3>WhatsApp QR code</h3>
+      <p style="font-size:13px;">Generate a QR code from the app and put it on listings, social posts, or your email signature. Leads scan it and message you directly on WhatsApp — straight into your Husig Close inbox, with full AI reply drafting.</p>
+    </div>
+    <div class="card card-green">
+      <h3>Open house check-in</h3>
+      <p style="font-size:13px;">Show a QR code at the door. Visitors fill in a short form on their phone. Lead created instantly, source tagged as that property's address.</p>
+    </div>
+    <div class="card card-green">
+      <h3>Zapier, Make, or any web form</h3>
+      <p style="font-size:13px;">If you use Google Forms, Typeform, a custom landing page, or any other tool that can send data somewhere — you can route those leads into Husig Close automatically. No technical knowledge needed, just a simple one-time connection.</p>
+    </div>
+    <div class="card card-green">
+      <h3>Manual entry + voice capture</h3>
+      <p style="font-size:13px;">Add leads yourself via the quick-add form, or speak naturally after an open house conversation and let the AI extract the details. Always available, no dependencies.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <p style="font-size:13.5px;color:var(--ink3);margin-bottom:20px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">Zillow and Realtor.com — how they actually work</p>
+
+  <div class="callout callout-blue">
+    <strong>Who owns the data:</strong> Zillow and Realtor.com own their lead data. To receive it automatically in a CRM, the CRM vendor must apply to each platform's partner programme and pass a review process. Until approved, the agent — not the CRM — is the only party that can access their own leads on those platforms. This is the same situation every CRM faces when they start out.
+  </div>
+
+  <div class="grid-2" style="margin-bottom:28px;">
+    <div class="card card-amber">
+      <h3>Zillow Premier Agent</h3>
+      <p style="font-size:13px;margin-bottom:10px;">Zillow's lead delivery programme is called Tech Connect. It is a paid advertising product — agents pay Zillow to be featured on listings in specific areas. Leads from those listings are delivered to a CRM only if the CRM is a certified Tech Connect partner.</p>
+      <p style="font-size:13px;margin-bottom:8px;"><strong>Our status:</strong> certification application in progress. Expected to take 4–8 weeks from submission.</p>
+      <p style="font-size:13px;"><strong>In the meantime:</strong> agents can forward Zillow leads to Husig Close via Zapier in about 10 minutes. The lead arrives with source tagged as "Zillow" and goes through the same pipeline — Heat Score, AI reply, everything. It is a workaround, not a permanent solution.</p>
+    </div>
+    <div class="card card-amber">
+      <h3>Realtor.com</h3>
+      <p style="font-size:13px;margin-bottom:10px;">Realtor.com has an equivalent programme called Connections Plus. Same model — agents pay for leads, and delivery to a CRM requires the CRM to be a certified partner.</p>
+      <p style="font-size:13px;margin-bottom:8px;"><strong>Our status:</strong> certification application in progress, in parallel with Zillow.</p>
+      <p style="font-size:13px;"><strong>In the meantime:</strong> same Zapier workaround applies. Realtor.com also has its own app that agents can manually forward leads from, and we are documenting both paths.</p>
+    </div>
+  </div>
+
+  <div class="callout callout-blue">
+    <strong>What the Zapier workaround looks like for agents:</strong> the agent logs into Zapier (free tier is sufficient), connects their Zillow or Realtor.com account, and sets up a one-click automation that sends new leads to Husig Close. Once set up, it runs automatically — the agent does not need to do anything else. It is slightly less seamless than a direct integration but functionally identical from that point forward.
+  </div>
+
+  <div class="divider"></div>
+
+  <p style="font-size:13.5px;color:var(--ink3);margin-bottom:20px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">How it works once a lead arrives — regardless of source</p>
 
   <div class="journey">
     <div class="jstep">
       <div class="jstep-num">1</div>
       <div class="jstep-body">
-        <div class="jstep-title">You connect your accounts once, in settings</div>
-        <div class="jstep-desc">In Husig Close settings, you connect your Zillow Premier Agent account, Realtor.com profile, or Facebook Business Manager. This is a one-time step that takes 2–5 minutes per platform. After that, everything is automatic.</div>
+        <div class="jstep-title">Lead lands in Husig Close</div>
+        <div class="jstep-desc">Whether it came from Facebook, a Zapier-forwarded Zillow enquiry, a WhatsApp message, or an SMS — the experience from here is identical. The lead is created with their name, phone, email, and which property they were interested in. Source is tagged automatically.</div>
       </div>
     </div>
     <div class="jstep">
       <div class="jstep-num">2</div>
       <div class="jstep-body">
-        <div class="jstep-title">A lead enquires on any connected platform</div>
-        <div class="jstep-desc">Someone fills in a Zillow contact form about your listing at 11pm. Someone submits your Facebook lead ad on a Sunday morning. The moment they do, that information is sent directly to Husig Close — name, phone number, email, and which property they were interested in.</div>
+        <div class="jstep-title">You get a notification within seconds</div>
+        <div class="jstep-desc">Push notification on your phone: "New lead from Zillow — Sarah Chen — interested in 42 Oak Street — Heat Score 68." Tap it and you're on the lead detail screen, enrichment already loading, top matched properties already ranked.</div>
+        <span class="jstep-save">No manual data entry. No switching apps.</span>
       </div>
     </div>
     <div class="jstep">
       <div class="jstep-num">3</div>
       <div class="jstep-body">
-        <div class="jstep-title">The lead appears in your app within seconds</div>
-        <div class="jstep-desc">You get a push notification: "New lead from Zillow — Sarah Chen — interested in 42 Oak Street." The lead is already in your pipeline with a Heat Score, the property is already tagged, and the AI has already sent the first reply — all before you've touched your phone.</div>
-        <span class="jstep-save">No manual data entry. No checking Zillow's own app separately.</span>
+        <div class="jstep-title">AI has already replied</div>
+        <div class="jstep-desc">If speed-to-lead is enabled, the lead has already received a personalised first message — within 60 seconds of their enquiry. You see the sent message in the thread when you open it.</div>
+        <span class="jstep-save">The window where response rate is highest is handled automatically</span>
       </div>
     </div>
     <div class="jstep">
       <div class="jstep-num">4</div>
       <div class="jstep-body">
-        <div class="jstep-title">Source is tracked for every lead</div>
-        <div class="jstep-desc">Every lead is tagged with where it came from — Zillow, Facebook, open house, referral, or your direct SMS number. Over time, your analytics show you which platforms are actually delivering serious buyers versus browsers. You can make smarter decisions about where to spend your advertising budget.</div>
-        <span class="jstep-save">Know which platforms earn their spend</span>
+        <div class="jstep-title">Source attribution tracked over time</div>
+        <div class="jstep-desc">Every lead is tagged with its source. Your analytics show which platforms deliver serious buyers versus browsers — so over time, you can make smarter decisions about where to spend your advertising budget.</div>
+        <span class="jstep-save">Know which platforms actually earn their spend</span>
       </div>
     </div>
   </div>
 
   <div class="divider"></div>
 
-  <p style="font-size:13.5px;color:var(--ink3);margin-bottom:16px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">V2 connected sources</p>
-  <div class="grid-4">
-    <div class="card">
-      <h3>Zillow Premier Agent</h3>
-      <p style="font-size:13px;">Enquiries from Zillow listings flow in automatically. Property pre-tagged on the lead record.</p>
-    </div>
-    <div class="card">
-      <h3>Realtor.com</h3>
-      <p style="font-size:13px;">Leads from your Realtor.com profile and listings arrive instantly.</p>
-    </div>
-    <div class="card">
-      <h3>Facebook & Instagram ads</h3>
-      <p style="font-size:13px;">Lead ad form submissions delivered to Husig Close the moment someone fills in the form. Ad campaign name stored for attribution.</p>
-    </div>
-    <div class="card">
-      <h3>Any website or tool</h3>
-      <p style="font-size:13px;">If you use Zapier, Make, Google Forms, or a custom landing page, you can send leads directly to Husig Close with a simple connection. No technical knowledge required.</p>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <p style="font-size:13.5px;color:var(--ink3);margin-bottom:16px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">Getting leads in — beyond the aggregators</p>
-  <div class="grid-3">
-    <div class="card">
-      <h3>SMS from your property sign</h3>
-      <p style="font-size:13px;">Print your Husig Close number on any sign or flyer. Someone texts in, a lead is created automatically, and the AI replies within 60 seconds.</p>
-    </div>
-    <div class="card">
-      <h3>WhatsApp QR code</h3>
-      <p style="font-size:13px;">Generate a QR code from the app. Put it on listings, social posts, or your email signature. Leads scan it and message you on WhatsApp — straight into your Husig Close inbox.</p>
-    </div>
-    <div class="card">
-      <h3>Open house check-in</h3>
-      <p style="font-size:13px;">Show visitors a QR code at the door. They fill in a short form on their phone. Lead created instantly with source tagged as the property address.</p>
-    </div>
+  <p style="font-size:13.5px;color:var(--ink3);margin-bottom:16px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;">MLS — why it is not in V2</p>
+  <div class="card" style="max-width:700px;">
+    <p style="font-size:13.5px;color:var(--ink2);line-height:1.65;margin-bottom:10px;">MLS (Multiple Listing Service) is not one platform — it is 580+ regional databases across the US, each operated independently with different access rules and data licensing terms. There is no single "connect your MLS" button.</p>
+    <p style="font-size:13.5px;color:var(--ink2);line-height:1.65;margin-bottom:10px;">In V2, agents add their property listings manually or import them. This covers the matching and scheduling functionality that matters most. A direct MLS sync — via a third-party data aggregator — is planned for a later release once we have confirmed demand and selected the right partner.</p>
+    <p style="font-size:13.5px;color:var(--ink2);line-height:1.65;">What agents typically think of as "MLS leads" are actually delivered through Zillow, Realtor.com, and the portals built on top of MLS data — not from the MLS board directly. Those are covered above.</p>
   </div>
 </section>
 
@@ -1116,8 +1147,8 @@
       <tr><td class="feature">Lead capture — manual form + voice</td><td><span class="in">✓ V2</span></td><td>Add leads by form or by speaking. Voice capture uses AI to extract lead details from a recorded conversation.</td></tr>
       <tr><td class="feature">Lead capture — SMS inbound</td><td><span class="in">✓ V2</span></td><td>Leads text your dedicated number. Auto-created in the app. Speed-to-lead reply fires within 60 seconds.</td></tr>
       <tr><td class="feature">Lead capture — WhatsApp inbound</td><td><span class="in">✓ V2</span></td><td>Leads message via WA from a QR code or link. Voice notes transcribed automatically.</td></tr>
-      <tr><td class="feature">Lead capture — Zillow Premier Agent</td><td><span class="in">✓ V2</span></td><td>Connect Zillow account. Enquiries appear in Husig Close instantly, property pre-tagged.</td></tr>
-      <tr><td class="feature">Lead capture — Realtor.com</td><td><span class="in">✓ V2</span></td><td>Connect Realtor.com profile. Same automatic flow as Zillow.</td></tr>
+      <tr><td class="feature">Lead capture — Zillow Premier Agent</td><td><span class="later">⏳ Pending</span></td><td>Direct integration requires Zillow Tech Connect certification — application in progress. In V2, agents can forward Zillow leads via Zapier (10-minute setup, functionally identical once running).</td></tr>
+      <tr><td class="feature">Lead capture — Realtor.com</td><td><span class="later">⏳ Pending</span></td><td>Same as Zillow — requires Connections Plus certification. Zapier workaround available from launch. Direct integration to follow once certified.</td></tr>
       <tr><td class="feature">Lead capture — Facebook / Instagram lead ads</td><td><span class="in">✓ V2</span></td><td>Connect Meta Business Manager. Form submissions land in Husig Close with ad attribution.</td></tr>
       <tr><td class="feature">Lead capture — open house QR</td><td><span class="in">✓ V2</span></td><td>Generate a QR code from the app. Visitors fill a short form on their phone. Lead created instantly.</td></tr>
       <tr><td class="feature">Heat Score (LPMAMA)</td><td><span class="in">✓ V2</span></td><td>0–100 score on every lead. Six qualification dimensions. Updates live with every message. Hot / Warm / Cool / Cold tiers.</td></tr>
